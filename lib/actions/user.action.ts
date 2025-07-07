@@ -1,4 +1,5 @@
 import { IUser } from '@/types/user';
+import { auth } from '@clerk/nextjs/server';
 import prisma from '../prisma';
 
 // create a new user
@@ -42,6 +43,36 @@ export async function deleteUser(clerkId: string) {
     });
 
     return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
+// get all users
+export async function getUsers() {
+  try {
+    const { sessionClaims } = await auth();
+    const user = await sessionClaims?.userId;
+
+    if (!user) {
+      throw new Error('User not authenticated.');
+    }
+
+    const users = await prisma.user.findMany();
+
+    return users;
+  } catch (error) {
+    throw error;
+  }
+}
+
+// get user by clerkId
+export async function getUser(clerkId: string) {
+  try {
+    const user = await prisma.user.findUniqueOrThrow({
+      where: { clerkId },
+    });
+    return user;
   } catch (error) {
     throw error;
   }

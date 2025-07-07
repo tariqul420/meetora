@@ -131,6 +131,30 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.InterviewScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  status: 'status',
+  streamCallId: 'streamCallId',
+  candidateId: 'candidateId',
+  interviewerIds: 'interviewerIds',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CommentScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  rating: 'rating',
+  interviewerId: 'interviewerId',
+  interviewId: 'interviewId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -140,14 +164,28 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
 exports.userRole = exports.$Enums.userRole = {
   admin: 'admin',
   recruiter: 'recruiter',
   candidate: 'candidate'
 };
 
+exports.Status = exports.$Enums.Status = {
+  scheduled: 'scheduled',
+  ongoing: 'ongoing',
+  completed: 'completed',
+  cancelled: 'cancelled'
+};
+
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Interview: 'Interview',
+  Comment: 'Comment'
 };
 
 /**
