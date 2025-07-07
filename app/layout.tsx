@@ -1,17 +1,13 @@
 import ClientClerkProvider from '@/components/providers/clerk-provider';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const inter = Inter({
+  variable: '--font-inter',
+  subsets: ['latin', 'latin-ext'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 });
 
 export const metadata: Metadata = {
@@ -39,7 +35,7 @@ export const metadata: Metadata = {
     siteName: 'Meetora',
     images: [
       {
-        url: '/og-image.png',
+        url: './assets/icon.webp',
         width: 1200,
         height: 630,
         alt: 'Meetora – Video Interview Platform',
@@ -51,9 +47,16 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Meetora – Smart Video Interview Platform',
     description: 'Streamline your interviews with real-time video calls, candidate evaluation, and scheduling tools — all with Meetora.',
-    images: ['/og-image.png'],
+    images: ['./assets/icon.webp'],
     creator: '@your_twitter_handle',
   },
+};
+
+export const viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
 };
 
 export default function MainLayout({
@@ -62,8 +65,8 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body suppressContentEditableWarning className={`${inter.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <ClientClerkProvider>
             <main className="min-h-screen overflow-x-hidden">{children}</main>
