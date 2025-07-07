@@ -41,10 +41,10 @@ model Interview {
   id             String    @id @default(uuid())
   title          String
   description    String?
-  startTime      Int
-  endTime        Int?
+  startTime      Float
+  endTime        Float?
   status         Status    @default(scheduled)
-  streamCallId   String
+  streamCallId   String    @unique
   candidateId    String
   candidate      User      @relation("CandidateInterviews", fields: [candidateId], references: [id])
   interviewerIds String[]
