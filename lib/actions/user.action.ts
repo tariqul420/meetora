@@ -5,7 +5,7 @@ import prisma from '../prisma';
 export async function createUser(userData: IUser) {
   try {
     const user = await prisma.user.findUnique({
-      where: { clerkUserId: userData.clerkUserId },
+      where: { clerkId: userData.clerkId },
     });
 
     if (user) return user;
@@ -21,10 +21,10 @@ export async function createUser(userData: IUser) {
 }
 
 // update an existing user
-export async function updateUser(clerkUserId: string, user: Partial<IUser>) {
+export async function updateUser(clerkId: string, user: Partial<IUser>) {
   try {
     const updatedUser = await prisma.user.update({
-      where: { clerkUserId },
+      where: { clerkId },
       data: user,
     });
 
@@ -35,10 +35,10 @@ export async function updateUser(clerkUserId: string, user: Partial<IUser>) {
 }
 
 // delete an existing user
-export async function deleteUser(clerkUserId: string) {
+export async function deleteUser(clerkId: string) {
   try {
     const result = await prisma.user.delete({
-      where: { clerkUserId },
+      where: { clerkId },
     });
 
     return result;

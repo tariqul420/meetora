@@ -1,5 +1,5 @@
 export interface IUser {
-  clerkUserId: string;
+  clerkId: string;
   email: string;
   name: string;
   role: 'admin' | 'recruiter' | 'candidate';
