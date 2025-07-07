@@ -57,10 +57,10 @@ export default function Navbar() {
 
   const navLinks: NavLink[] = [
     { href: '/', label: 'Home' },
-    { href: '/products', label: 'Products' },
-    { href: '/blogs', label: 'Blogs' },
-    { href: '/about-us', label: 'About Us' },
-    { href: '/contact-us', label: 'Contact' },
+    { href: '/pricing', label: 'Pricing' },
+    { href: '/help', label: 'Help' },
+    { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact' },
     isSignedIn ? { href: `/${user?.publicMetadata.role}`, label: 'Dashboard' } : false,
   ];
 

@@ -1,3 +1,5 @@
+'use server';
+
 import { IComment } from '@/types/comment';
 import prisma from '../prisma';
 

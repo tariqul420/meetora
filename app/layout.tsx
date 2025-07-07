@@ -1,4 +1,5 @@
 import ClientClerkProvider from '@/components/providers/clerk-provider';
+import StreamClientProvider from '@/components/providers/stream-client-provider';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -69,7 +70,9 @@ export default function MainLayout({
       <body suppressContentEditableWarning className={`${inter.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <ClientClerkProvider>
-            <main className="min-h-screen overflow-x-hidden">{children}</main>
+            <StreamClientProvider>
+              <main className="min-h-screen overflow-x-hidden">{children}</main>
+            </StreamClientProvider>
           </ClientClerkProvider>
         </ThemeProvider>
       </body>

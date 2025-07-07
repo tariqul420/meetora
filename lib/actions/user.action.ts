@@ -1,3 +1,5 @@
+'use server';
+
 import { IUser } from '@/types/user';
 import { auth } from '@clerk/nextjs/server';
 import prisma from '../prisma';

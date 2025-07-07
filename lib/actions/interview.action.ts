@@ -1,3 +1,5 @@
+'use server';
+
 import { IInterview, Status } from '@/types/interview';
 import { auth } from '@clerk/nextjs/server';
 import prisma from '../prisma';

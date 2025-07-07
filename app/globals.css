@@ -3,6 +3,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --color-accent-main: #4f46e5;
+  --color-accent-hover: #4338ca;
+  --color-red: #ef4444;
+  --color-light: #f8fafc;
+  --color-dark-deep: #0a0a0a;
+  --color-dark-lite: #111111;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
