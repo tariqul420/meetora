@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
     const { id, email_addresses, image_url, first_name, last_name } = evt.data as UserCreatedEvent;
 
     const user = {
-      clerkUserId: id,
+      clerkId: id,
       email: email_addresses[0].email_address,
       name: `${first_name || ''} ${last_name || ''}`.trim(),
       profilePicture: image_url,
