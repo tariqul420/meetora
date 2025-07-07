@@ -2296,28 +2296,16 @@ export namespace Prisma {
 
   export type AggregateInterview = {
     _count: InterviewCountAggregateOutputType | null
-    _avg: InterviewAvgAggregateOutputType | null
-    _sum: InterviewSumAggregateOutputType | null
     _min: InterviewMinAggregateOutputType | null
     _max: InterviewMaxAggregateOutputType | null
-  }
-
-  export type InterviewAvgAggregateOutputType = {
-    startTime: number | null
-    endTime: number | null
-  }
-
-  export type InterviewSumAggregateOutputType = {
-    startTime: number | null
-    endTime: number | null
   }
 
   export type InterviewMinAggregateOutputType = {
     id: string | null
     title: string | null
     description: string | null
-    startTime: number | null
-    endTime: number | null
+    startTime: Date | null
+    endTime: Date | null
     status: $Enums.Status | null
     streamCallId: string | null
     candidateId: string | null
@@ -2329,8 +2317,8 @@ export namespace Prisma {
     id: string | null
     title: string | null
     description: string | null
-    startTime: number | null
-    endTime: number | null
+    startTime: Date | null
+    endTime: Date | null
     status: $Enums.Status | null
     streamCallId: string | null
     candidateId: string | null
@@ -2353,16 +2341,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type InterviewAvgAggregateInputType = {
-    startTime?: true
-    endTime?: true
-  }
-
-  export type InterviewSumAggregateInputType = {
-    startTime?: true
-    endTime?: true
-  }
 
   export type InterviewMinAggregateInputType = {
     id?: true
@@ -2443,18 +2421,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: InterviewAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: InterviewSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: InterviewMinAggregateInputType
@@ -2485,8 +2451,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: InterviewCountAggregateInputType | true
-    _avg?: InterviewAvgAggregateInputType
-    _sum?: InterviewSumAggregateInputType
     _min?: InterviewMinAggregateInputType
     _max?: InterviewMaxAggregateInputType
   }
@@ -2495,8 +2459,8 @@ export namespace Prisma {
     id: string
     title: string
     description: string | null
-    startTime: number
-    endTime: number | null
+    startTime: Date
+    endTime: Date | null
     status: $Enums.Status
     streamCallId: string
     candidateId: string
@@ -2504,8 +2468,6 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     _count: InterviewCountAggregateOutputType | null
-    _avg: InterviewAvgAggregateOutputType | null
-    _sum: InterviewSumAggregateOutputType | null
     _min: InterviewMinAggregateOutputType | null
     _max: InterviewMaxAggregateOutputType | null
   }
@@ -2608,8 +2570,8 @@ export namespace Prisma {
       id: string
       title: string
       description: string | null
-      startTime: number
-      endTime: number | null
+      startTime: Date
+      endTime: Date | null
       status: $Enums.Status
       streamCallId: string
       candidateId: string
@@ -3044,8 +3006,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Interview", 'String'>
     readonly title: FieldRef<"Interview", 'String'>
     readonly description: FieldRef<"Interview", 'String'>
-    readonly startTime: FieldRef<"Interview", 'Float'>
-    readonly endTime: FieldRef<"Interview", 'Float'>
+    readonly startTime: FieldRef<"Interview", 'DateTime'>
+    readonly endTime: FieldRef<"Interview", 'DateTime'>
     readonly status: FieldRef<"Interview", 'Status'>
     readonly streamCallId: FieldRef<"Interview", 'String'>
     readonly candidateId: FieldRef<"Interview", 'String'>
@@ -4746,20 +4708,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Status'
    */
   export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
@@ -4770,6 +4718,20 @@ export namespace Prisma {
    * Reference to a field of type 'Status[]'
    */
   export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -4870,8 +4832,8 @@ export namespace Prisma {
     id?: StringFilter<"Interview"> | string
     title?: StringFilter<"Interview"> | string
     description?: StringNullableFilter<"Interview"> | string | null
-    startTime?: FloatFilter<"Interview"> | number
-    endTime?: FloatNullableFilter<"Interview"> | number | null
+    startTime?: DateTimeFilter<"Interview"> | Date | string
+    endTime?: DateTimeNullableFilter<"Interview"> | Date | string | null
     status?: EnumStatusFilter<"Interview"> | $Enums.Status
     streamCallId?: StringFilter<"Interview"> | string
     candidateId?: StringFilter<"Interview"> | string
@@ -4906,8 +4868,8 @@ export namespace Prisma {
     NOT?: InterviewWhereInput | InterviewWhereInput[]
     title?: StringFilter<"Interview"> | string
     description?: StringNullableFilter<"Interview"> | string | null
-    startTime?: FloatFilter<"Interview"> | number
-    endTime?: FloatNullableFilter<"Interview"> | number | null
+    startTime?: DateTimeFilter<"Interview"> | Date | string
+    endTime?: DateTimeNullableFilter<"Interview"> | Date | string | null
     status?: EnumStatusFilter<"Interview"> | $Enums.Status
     candidateId?: StringFilter<"Interview"> | string
     interviewerIds?: StringNullableListFilter<"Interview">
@@ -4930,10 +4892,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: InterviewCountOrderByAggregateInput
-    _avg?: InterviewAvgOrderByAggregateInput
     _max?: InterviewMaxOrderByAggregateInput
     _min?: InterviewMinOrderByAggregateInput
-    _sum?: InterviewSumOrderByAggregateInput
   }
 
   export type InterviewScalarWhereWithAggregatesInput = {
@@ -4943,8 +4903,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Interview"> | string
     title?: StringWithAggregatesFilter<"Interview"> | string
     description?: StringNullableWithAggregatesFilter<"Interview"> | string | null
-    startTime?: FloatWithAggregatesFilter<"Interview"> | number
-    endTime?: FloatNullableWithAggregatesFilter<"Interview"> | number | null
+    startTime?: DateTimeWithAggregatesFilter<"Interview"> | Date | string
+    endTime?: DateTimeNullableWithAggregatesFilter<"Interview"> | Date | string | null
     status?: EnumStatusWithAggregatesFilter<"Interview"> | $Enums.Status
     streamCallId?: StringWithAggregatesFilter<"Interview"> | string
     candidateId?: StringWithAggregatesFilter<"Interview"> | string
@@ -5112,8 +5072,8 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    startTime: number
-    endTime?: number | null
+    startTime: Date | string
+    endTime?: Date | string | null
     status?: $Enums.Status
     streamCallId: string
     interviewerIds?: InterviewCreateinterviewerIdsInput | string[]
@@ -5127,8 +5087,8 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    startTime: number
-    endTime?: number | null
+    startTime: Date | string
+    endTime?: Date | string | null
     status?: $Enums.Status
     streamCallId: string
     candidateId: string
@@ -5142,8 +5102,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    startTime?: FloatFieldUpdateOperationsInput | number
-    endTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     streamCallId?: StringFieldUpdateOperationsInput | string
     interviewerIds?: InterviewUpdateinterviewerIdsInput | string[]
@@ -5157,8 +5117,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    startTime?: FloatFieldUpdateOperationsInput | number
-    endTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     streamCallId?: StringFieldUpdateOperationsInput | string
     candidateId?: StringFieldUpdateOperationsInput | string
@@ -5172,8 +5132,8 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    startTime: number
-    endTime?: number | null
+    startTime: Date | string
+    endTime?: Date | string | null
     status?: $Enums.Status
     streamCallId: string
     candidateId: string
@@ -5186,8 +5146,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    startTime?: FloatFieldUpdateOperationsInput | number
-    endTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     streamCallId?: StringFieldUpdateOperationsInput | string
     interviewerIds?: InterviewUpdateinterviewerIdsInput | string[]
@@ -5199,8 +5159,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    startTime?: FloatFieldUpdateOperationsInput | number
-    endTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     streamCallId?: StringFieldUpdateOperationsInput | string
     candidateId?: StringFieldUpdateOperationsInput | string
@@ -5443,26 +5403,15 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type FloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type EnumStatusFilter<$PrismaModel = never> = {
@@ -5499,11 +5448,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type InterviewAvgOrderByAggregateInput = {
-    startTime?: SortOrder
-    endTime?: SortOrder
-  }
-
   export type InterviewMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
@@ -5530,41 +5474,18 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type InterviewSumOrderByAggregateInput = {
-    startTime?: SortOrder
-    endTime?: SortOrder
-  }
-
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedFloatNullableFilter<$PrismaModel>
-    _min?: NestedFloatNullableFilter<$PrismaModel>
-    _max?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -5575,6 +5496,17 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumStatusFilter<$PrismaModel>
     _max?: NestedEnumStatusFilter<$PrismaModel>
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type InterviewScalarRelationFilter = {
@@ -5618,6 +5550,22 @@ export namespace Prisma {
 
   export type CommentSumOrderByAggregateInput = {
     rating?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type InterviewCreateNestedManyWithoutCandidateInput = {
@@ -5744,20 +5692,8 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type NullableFloatFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type EnumStatusFieldUpdateOperationsInput = {
@@ -5815,6 +5751,14 @@ export namespace Prisma {
     create?: XOR<InterviewCreateWithoutCommentsInput, InterviewUncheckedCreateWithoutCommentsInput>
     connectOrCreate?: InterviewCreateOrConnectWithoutCommentsInput
     connect?: InterviewWhereUniqueInput
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
@@ -5959,6 +5903,48 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedEnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
+  }
+
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -5968,24 +5954,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedEnumStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -6004,38 +5972,12 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedFloatNullableFilter<$PrismaModel>
-    _min?: NestedFloatNullableFilter<$PrismaModel>
-    _max?: NestedFloatNullableFilter<$PrismaModel>
-  }
-
-  export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumStatusFilter<$PrismaModel>
-    _max?: NestedEnumStatusFilter<$PrismaModel>
-  }
-
   export type InterviewCreateWithoutCandidateInput = {
     id?: string
     title: string
     description?: string | null
-    startTime: number
-    endTime?: number | null
+    startTime: Date | string
+    endTime?: Date | string | null
     status?: $Enums.Status
     streamCallId: string
     interviewerIds?: InterviewCreateinterviewerIdsInput | string[]
@@ -6048,8 +5990,8 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    startTime: number
-    endTime?: number | null
+    startTime: Date | string
+    endTime?: Date | string | null
     status?: $Enums.Status
     streamCallId: string
     interviewerIds?: InterviewCreateinterviewerIdsInput | string[]
@@ -6119,8 +6061,8 @@ export namespace Prisma {
     id?: StringFilter<"Interview"> | string
     title?: StringFilter<"Interview"> | string
     description?: StringNullableFilter<"Interview"> | string | null
-    startTime?: FloatFilter<"Interview"> | number
-    endTime?: FloatNullableFilter<"Interview"> | number | null
+    startTime?: DateTimeFilter<"Interview"> | Date | string
+    endTime?: DateTimeNullableFilter<"Interview"> | Date | string | null
     status?: EnumStatusFilter<"Interview"> | $Enums.Status
     streamCallId?: StringFilter<"Interview"> | string
     candidateId?: StringFilter<"Interview"> | string
@@ -6299,8 +6241,8 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    startTime: number
-    endTime?: number | null
+    startTime: Date | string
+    endTime?: Date | string | null
     status?: $Enums.Status
     streamCallId: string
     interviewerIds?: InterviewCreateinterviewerIdsInput | string[]
@@ -6313,8 +6255,8 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    startTime: number
-    endTime?: number | null
+    startTime: Date | string
+    endTime?: Date | string | null
     status?: $Enums.Status
     streamCallId: string
     candidateId: string
@@ -6378,8 +6320,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    startTime?: FloatFieldUpdateOperationsInput | number
-    endTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     streamCallId?: StringFieldUpdateOperationsInput | string
     interviewerIds?: InterviewUpdateinterviewerIdsInput | string[]
@@ -6392,8 +6334,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    startTime?: FloatFieldUpdateOperationsInput | number
-    endTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     streamCallId?: StringFieldUpdateOperationsInput | string
     candidateId?: StringFieldUpdateOperationsInput | string
@@ -6406,8 +6348,8 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    startTime: number
-    endTime?: number | null
+    startTime: Date | string
+    endTime?: Date | string | null
     status?: $Enums.Status
     streamCallId: string
     interviewerIds?: InterviewCreateinterviewerIdsInput | string[]
@@ -6428,8 +6370,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    startTime?: FloatFieldUpdateOperationsInput | number
-    endTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     streamCallId?: StringFieldUpdateOperationsInput | string
     interviewerIds?: InterviewUpdateinterviewerIdsInput | string[]
@@ -6442,8 +6384,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    startTime?: FloatFieldUpdateOperationsInput | number
-    endTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     streamCallId?: StringFieldUpdateOperationsInput | string
     interviewerIds?: InterviewUpdateinterviewerIdsInput | string[]
@@ -6456,8 +6398,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    startTime?: FloatFieldUpdateOperationsInput | number
-    endTime?: NullableFloatFieldUpdateOperationsInput | number | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     streamCallId?: StringFieldUpdateOperationsInput | string
     interviewerIds?: InterviewUpdateinterviewerIdsInput | string[]

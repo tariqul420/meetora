@@ -41,8 +41,8 @@ model Interview {
   id             String    @id @default(uuid())
   title          String
   description    String?
-  startTime      Float
-  endTime        Float?
+  startTime      DateTime
+  endTime        DateTime?
   status         Status    @default(scheduled)
   streamCallId   String    @unique
   candidateId    String
