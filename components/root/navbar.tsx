@@ -10,7 +10,7 @@ import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger 
 import { cn } from '@/lib/utils';
 
 import Logo from '../global/logo';
-import { ModeToggle } from './mode-toggle';
+import { ModeToggle } from '../global/mode-toggle';
 
 export default function Navbar() {
   const { isSignedIn, user } = useUser();

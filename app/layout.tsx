@@ -1,4 +1,5 @@
 import ClientClerkProvider from '@/components/providers/clerk-provider';
+import { ThemeProvider } from '@/components/providers/theme-provider';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
@@ -63,9 +64,11 @@ export default function MainLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ClientClerkProvider>
-          <main className="min-h-screen overflow-x-hidden">{children}</main>
-        </ClientClerkProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <ClientClerkProvider>
+            <main className="min-h-screen overflow-x-hidden">{children}</main>
+          </ClientClerkProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
