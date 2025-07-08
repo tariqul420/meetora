@@ -52,7 +52,7 @@ export function DashboardSidebar({ menu = [] }: { menu: DashboardSidebarProps[] 
 
   return (
     <Sidebar>
-      <SidebarHeader>
+      <SidebarHeader className="text-center">
         <Logo />
       </SidebarHeader>
       <SidebarContent>
