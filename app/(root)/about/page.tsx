@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Sparkles } from 'lucide-react';
+import Image from 'next/image';
 
 const team = [
   {
@@ -48,7 +49,8 @@ export default function AboutPage() {
             experience first. From scheduling to evaluation, Meetora creates a seamless flow that helps teams hire smarter and faster.
           </p>
         </div>
-        <img src="/images/about-illustration.svg" alt="Interview process illustration" className="w-full h-auto rounded-xl border" />
+
+        <Image src="/assets/about-illustration.svg" alt="Interview process illustration" width={800} height={600} className="w-full h-auto rounded-xl border" />
       </section>
 
       <Separator />
