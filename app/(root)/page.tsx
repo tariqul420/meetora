@@ -1,5 +1,4 @@
-'use client';
-
+import FeatureCard from '@/components/root/home/feature-card';
 import HowItWork from '@/components/root/home/how-it-work';
 import NewsletterSection from '@/components/root/home/newsletter-section';
 import TestimonialSection from '@/components/root/home/testimonial-section';
@@ -22,15 +21,19 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-5 mt-8 flex-wrap">
-            <Button size="lg" variant="outline">
-              Get Started Free
-            </Button>
-            <Button variant="outline" size="lg">
-              Book a Demo
-            </Button>
+            <Link href={'/sign-in'}>
+              <Button size="lg" variant="outline">
+                Get Started Free
+              </Button>
+            </Link>
+            <Link href={'/pricing'}>
+              <Button variant="outline" size="lg">
+                Book a Demo
+              </Button>
+            </Link>
           </div>
           {/* EduGenius Button */}
-          <Link href="https://edugenius.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-flex">
+          <Link href="https://edu-genius.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-flex">
             <Button size="lg" variant="secondary">
               Explore EduGenius
             </Button>
@@ -78,21 +81,12 @@ export default function HomePage() {
         <p className="text-muted-foreground max-w-xl mx-auto mb-10 text-lg leading-relaxed">
           Join thousands of teams using Meetora for structured, remote-first interviews. Simplify your hiring workflow today.
         </p>
-        <Button size="lg" className="px-10 py-5 shadow-lg hover:shadow-xl transition">
-          Create Your Free Account
-        </Button>
+        <Link href={'/sign-up'}>
+          <Button size="lg" className="px-10 py-5 shadow-lg hover:shadow-xl transition">
+            Create Your Free Account
+          </Button>
+        </Link>
       </section>
     </>
-  );
-}
-
-// FeatureCard Component
-function FeatureCard({ icon, title, children }: { icon: React.ReactNode; title: string; children: React.ReactNode }) {
-  return (
-    <div className="bg-card rounded-2xl p-8 shadow hover:shadow-lg transition-shadow cursor-default">
-      {icon}
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-muted-foreground">{children}</p>
-    </div>
   );
 }

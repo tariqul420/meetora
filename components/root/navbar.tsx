@@ -108,7 +108,7 @@ export default function Navbar() {
 
           <ModeToggle />
 
-          <Button variant={'ghost'}>
+          <Button size={'icon'} variant={'ghost'}>
             <Link href="https://github.com/tariqul420/meetora" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
               <GithubIcon className="w-5 h-5" />
             </Link>
