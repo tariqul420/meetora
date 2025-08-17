@@ -1,9 +1,9 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
 export default function Logo() {
   return (
-    <Link href="/" className="font-bold text-lg md:text-xl">
+    <Link href='/' className='text-lg font-bold md:text-xl'>
       Meetora
     </Link>
-  );
+  )
 }

@@ -1,10 +1,17 @@
-'use client';
+'use client'
 
-import { SignedIn, UserButton } from '@clerk/nextjs';
-import { CalendarClockIcon, FileTextIcon, LayoutDashboardIcon, MoreVerticalIcon, UsersIcon, VideoIcon } from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Suspense } from 'react';
+import { SignedIn, UserButton } from '@clerk/nextjs'
+import {
+  CalendarClockIcon,
+  FileTextIcon,
+  LayoutDashboardIcon,
+  MoreVerticalIcon,
+  UsersIcon,
+  VideoIcon,
+} from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { Suspense } from 'react'
 
 import {
   Sidebar,
@@ -18,8 +25,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from '@/components/ui/sidebar';
-import Logo from '../global/logo';
+} from '@/components/ui/sidebar'
+import Logo from '../global/logo'
 
 const iconMap = {
   LayoutDashboardIcon,
@@ -27,32 +34,36 @@ const iconMap = {
   VideoIcon,
   FileTextIcon,
   UsersIcon,
-} as const;
+} as const
 
-export type IconMapKey = keyof typeof iconMap;
+export type IconMapKey = keyof typeof iconMap
 
 export interface DashboardSidebarProps {
-  title: string;
-  url: string;
-  icon: IconMapKey;
+  title: string
+  url: string
+  icon: IconMapKey
 }
 
-export function DashboardSidebar({ menu = [] }: { menu: DashboardSidebarProps[] }) {
-  const pathname = usePathname();
-  const { toggleSidebar } = useSidebar();
+export function DashboardSidebar({
+  menu = [],
+}: {
+  menu: DashboardSidebarProps[]
+}) {
+  const pathname = usePathname()
+  const { toggleSidebar } = useSidebar()
 
   const isActive = (url: string) => {
-    if (!url) return false;
+    if (!url) return false
     if (['/admin', '/recruiter', '/candidate'].includes(url)) {
-      return pathname === url;
+      return pathname === url
     }
 
-    return pathname.startsWith(url);
-  };
+    return pathname.startsWith(url)
+  }
 
   return (
     <Sidebar>
-      <SidebarHeader className="text-center">
+      <SidebarHeader className='text-center'>
         <Logo />
       </SidebarHeader>
       <SidebarContent>
@@ -61,41 +72,51 @@ export function DashboardSidebar({ menu = [] }: { menu: DashboardSidebarProps[] 
           <SidebarGroupContent>
             <SidebarMenu>
               {menu.map((item) => {
-                const IconComponent = iconMap[item?.icon];
+                const IconComponent = iconMap[item?.icon]
 
                 return (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton className={`dark:hover:bg-dark-lite hover:bg-gray-100 ${isActive(item?.url) ? 'dark:bg-dark-lite bg-gray-100' : ''}`} asChild>
+                    <SidebarMenuButton
+                      className={`dark:hover:bg-dark-lite hover:bg-gray-100 ${isActive(item?.url) ? 'dark:bg-dark-lite bg-gray-100' : ''}`}
+                      asChild
+                    >
                       <Link
                         onClick={() => {
                           if (window.innerWidth < 768) {
-                            toggleSidebar();
+                            toggleSidebar()
                           }
                         }}
                         href={item?.url || '#'}
-                        className="">
+                        className=''
+                      >
                         {IconComponent ? <IconComponent /> : null}
                         <span>{item.title}</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
-                );
+                )
               })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <SidebarMenuButton size="lg" className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+        <SidebarMenuButton
+          size='lg'
+          className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
+        >
           <SignedIn>
-            <Suspense fallback={<div className="h-10 w-10 rounded-full">loading</div>}>
+            <Suspense
+              fallback={<div className='h-10 w-10 rounded-full'>loading</div>}
+            >
               <UserButton
                 showName={true}
                 appearance={{
                   elements: {
                     userButtonBox: 'flex !flex-row-reverse items-center gap-2',
                   },
-                }}>
+                }}
+              >
                 {/* Only show Additional Info section for instructors */}
                 {/* {role === "instructor" && (
                 <UserButton.UserProfilePage
@@ -122,9 +143,9 @@ export function DashboardSidebar({ menu = [] }: { menu: DashboardSidebarProps[] 
               </UserButton>
             </Suspense>
           </SignedIn>
-          <MoreVerticalIcon className="ml-auto size-4" />
+          <MoreVerticalIcon className='ml-auto size-4' />
         </SidebarMenuButton>
       </SidebarFooter>
     </Sidebar>
-  );
+  )
 }
