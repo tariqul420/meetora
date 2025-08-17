@@ -1,17 +1,18 @@
-'use client';
+'use client'
 
-import { streamTokenProvider } from '@/lib/actions/stream.action';
-import { ChildrenProps } from '@/types';
-import { useUser } from '@clerk/nextjs';
-import { StreamVideo, StreamVideoClient } from '@stream-io/video-react-sdk';
-import { useEffect, useState } from 'react';
+import { streamTokenProvider } from '@/lib/actions/stream.action'
+import { ChildrenProps } from '@/types'
+import { useUser } from '@clerk/nextjs'
+import { StreamVideo, StreamVideoClient } from '@stream-io/video-react-sdk'
+import { useEffect, useState } from 'react'
 
 export default function StreamClientProvider({ children }: ChildrenProps) {
-  const [streamVideoClient, setStreamVideoClient] = useState<StreamVideoClient>();
-  const { user, isLoaded } = useUser();
+  const [streamVideoClient, setStreamVideoClient] =
+    useState<StreamVideoClient>()
+  const { user, isLoaded } = useUser()
 
   useEffect(() => {
-    if (!isLoaded || !user) return;
+    if (!isLoaded || !user) return
 
     const client = new StreamVideoClient({
       apiKey: process.env.NEXT_PUBLIC_STREAM_API_KEY!,
@@ -21,12 +22,16 @@ export default function StreamClientProvider({ children }: ChildrenProps) {
         image: user?.imageUrl,
       },
       tokenProvider: streamTokenProvider,
-    });
+    })
 
-    setStreamVideoClient(client);
-  }, [user, isLoaded]);
+    setStreamVideoClient(client)
+  }, [user, isLoaded])
 
   // if (!streamVideoClient) return <LoadingUI />;
 
-  return <StreamVideo client={streamVideoClient as StreamVideoClient}>{children}</StreamVideo>;
+  return (
+    <StreamVideo client={streamVideoClient as StreamVideoClient}>
+      {children}
+    </StreamVideo>
+  )
 }

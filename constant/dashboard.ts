@@ -1,4 +1,4 @@
-import { IconMapKey } from '@/components/dashboard/dashboard-sidebar';
+import { IconMapKey } from '@/components/dashboard/dashboard-sidebar'
 
 export const admin = [
   {
@@ -31,7 +31,7 @@ export const admin = [
     url: '/admin/customers',
     icon: 'Users' as IconMapKey,
   },
-];
+]
 
 export const recruiter = [
   {
@@ -49,7 +49,7 @@ export const recruiter = [
     url: '/recruiter/candidates',
     icon: 'Users' as IconMapKey,
   },
-];
+]
 
 export const candidate = [
   {
@@ -62,9 +62,9 @@ export const candidate = [
     url: '/candidate/interviews',
     icon: 'CalendarClock' as IconMapKey,
   },
-];
+]
 
 export const sidebar = {
   recruiter,
   candidate,
-};
+}

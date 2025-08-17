@@ -1,42 +1,46 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-import { NextResponse } from 'next/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { NextResponse } from 'next/server'
 
-const isProtectedRoute = createRouteMatcher(['/admin(.*)', '/recruiter(.*)', '/candidate(.*)']);
+const isProtectedRoute = createRouteMatcher([
+  '/admin(.*)',
+  '/recruiter(.*)',
+  '/candidate(.*)',
+])
 
 export default clerkMiddleware(async (auth, req) => {
-  const { userId, redirectToSignIn, sessionClaims } = await auth();
-  const { pathname } = req.nextUrl;
+  const { userId, redirectToSignIn, sessionClaims } = await auth()
+  const { pathname } = req.nextUrl
 
   if (!userId && isProtectedRoute(req)) {
-    return redirectToSignIn({ returnBackUrl: req.url });
+    return redirectToSignIn({ returnBackUrl: req.url })
   }
 
-  const userRole = sessionClaims?.role;
+  const userRole = sessionClaims?.role
 
   // role base routing for protected route
   if (pathname.startsWith('/admin')) {
     if (userRole !== 'admin') {
-      return NextResponse.redirect(new URL(`/${userRole}`, req.url));
+      return NextResponse.redirect(new URL(`/${userRole}`, req.url))
     }
-    return NextResponse.next();
+    return NextResponse.next()
   }
 
   if (pathname.startsWith('/recruiter')) {
     if (userRole !== 'recruiter') {
-      return NextResponse.redirect(new URL(`/${userRole}`, req.url));
+      return NextResponse.redirect(new URL(`/${userRole}`, req.url))
     }
-    return NextResponse.next();
+    return NextResponse.next()
   }
 
   if (pathname.startsWith('/candidate')) {
     if (userRole !== 'candidate') {
-      return NextResponse.redirect(new URL(`/${userRole}`, req.url));
+      return NextResponse.redirect(new URL(`/${userRole}`, req.url))
     }
-    return NextResponse.next();
+    return NextResponse.next()
   }
 
-  return NextResponse.next();
-});
+  return NextResponse.next()
+})
 
 export const config = {
   matcher: [
@@ -45,4 +49,4 @@ export const config = {
     // Always run for API routes
     '/(api|trpc)(.*)',
   ],
-};
+}

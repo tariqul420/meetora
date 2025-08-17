@@ -1,18 +1,18 @@
-'use server';
+'use server'
 
-import { IComment } from '@/types/comment';
-import prisma from '../prisma';
+import { IComment } from '@/types/comment'
+import prisma from '../prisma'
 
 // create a comment
 export async function addComment(commentData: IComment) {
   try {
     const comment = await prisma.comment.create({
       data: commentData,
-    });
+    })
 
-    return comment;
+    return comment
   } catch (error) {
-    throw error;
+    throw error
   }
 }
 
@@ -21,10 +21,10 @@ export async function getComments(interviewId: string) {
   try {
     const comments = await prisma.comment.findMany({
       where: { interviewId },
-    });
+    })
 
-    return comments;
+    return comments
   } catch (error) {
-    throw error;
+    throw error
   }
 }
