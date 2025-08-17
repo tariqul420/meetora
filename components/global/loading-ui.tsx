@@ -16,7 +16,7 @@ export default function LoadingUI() {
       <div className="w-full max-w-md text-center">
         <p className="text-lg font-semibold text-muted-foreground">Loading, please wait...</p>
       </div>
-      <Progress value={progress} className="w-[40%]" />
+      <Progress value={progress} className="w-[15%]" />
     </div>
   );
 }

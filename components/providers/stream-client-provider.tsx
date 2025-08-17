@@ -5,7 +5,6 @@ import { ChildrenProps } from '@/types';
 import { useUser } from '@clerk/nextjs';
 import { StreamVideo, StreamVideoClient } from '@stream-io/video-react-sdk';
 import { useEffect, useState } from 'react';
-import LoadingUI from '../global/loading-ui';
 
 export default function StreamClientProvider({ children }: ChildrenProps) {
   const [streamVideoClient, setStreamVideoClient] = useState<StreamVideoClient>();
@@ -27,7 +26,7 @@ export default function StreamClientProvider({ children }: ChildrenProps) {
     setStreamVideoClient(client);
   }, [user, isLoaded]);
 
-  if (!streamVideoClient) return <LoadingUI />;
+  // if (!streamVideoClient) return <LoadingUI />;
 
-  return <StreamVideo client={streamVideoClient}>{children}</StreamVideo>;
+  return <StreamVideo client={streamVideoClient as StreamVideoClient}>{children}</StreamVideo>;
 }

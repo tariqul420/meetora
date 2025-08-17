@@ -26,7 +26,7 @@ export default function ContactPage() {
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-primary" />
-                  <span>support@meetora.app</span>
+                  <span>support@tariqul.dev</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-primary" />
@@ -53,8 +53,8 @@ export default function ContactPage() {
               <h3 className="text-lg font-semibold mb-2">Prefer email?</h3>
               <p className="text-sm text-muted-foreground">
                 Send us a message at{' '}
-                <a href="mailto:support@meetora.app" className="underline">
-                  support@meetora.app
+                <a href="mailto:support@tariqul.dev" className="underline">
+                  support@tariqul.dev
                 </a>
               </p>
             </div>
