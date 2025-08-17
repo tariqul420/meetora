@@ -1,7 +1,7 @@
 'use client';
 
 import { SignedIn, SignedOut, UserButton, useUser } from '@clerk/nextjs';
-import { AlignLeft } from 'lucide-react';
+import { AlignLeft, GithubIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 
 import Logo from '../global/logo';
 import { ModeToggle } from '../global/mode-toggle';
+import { Button } from '../ui/button';
 
 export default function Navbar() {
   const { isSignedIn, user } = useUser();
@@ -106,6 +107,12 @@ export default function Navbar() {
           </SignedIn>
 
           <ModeToggle />
+
+          <Button size={'icon'} variant={'ghost'}>
+            <Link href="https://github.com/tariqul420/meetora" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+              <GithubIcon className="w-5 h-5" />
+            </Link>
+          </Button>
 
           {/* Mobile Menu (Sheet) */}
           <Sheet>

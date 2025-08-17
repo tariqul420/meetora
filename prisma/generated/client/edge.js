@@ -198,6 +198,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -208,7 +209,7 @@ const config = {
   },
   "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum userRole {\n  admin\n  recruiter\n  candidate\n}\n\nenum Status {\n  scheduled\n  ongoing\n  completed\n  cancelled\n}\n\nmodel User {\n  id             String      @id @default(uuid())\n  clerkId        String      @unique\n  email          String      @unique\n  name           String\n  role           userRole    @default(candidate)\n  profilePicture String?\n  createdAt      DateTime    @default(now())\n  updatedAt      DateTime    @updatedAt\n  interviews     Interview[] @relation(\"CandidateInterviews\")\n  comments       Comment[]\n\n  @@index([email, clerkId])\n  @@map(\"users\")\n}\n\nmodel Interview {\n  id             String    @id @default(uuid())\n  title          String\n  description    String?\n  startTime      DateTime\n  endTime        DateTime?\n  status         Status    @default(scheduled)\n  streamCallId   String    @unique\n  candidateId    String\n  candidate      User      @relation(\"CandidateInterviews\", fields: [candidateId], references: [id])\n  interviewerIds String[]\n  comments       Comment[]\n  createdAt      DateTime  @default(now())\n  updatedAt      DateTime  @updatedAt\n\n  @@index([candidateId, streamCallId])\n  @@map(\"interviews\")\n}\n\nmodel Comment {\n  id            String    @id @default(uuid())\n  content       String\n  rating        Float\n  interviewerId String\n  interviewer   User      @relation(fields: [interviewerId], references: [id])\n  interviewId   String\n  interview     Interview @relation(fields: [interviewId], references: [id])\n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime  @updatedAt\n\n  @@index([interviewerId, interviewId])\n  @@map(\"comments\")\n}\n",
   "inlineSchemaHash": "b21551cb93829bb9c134ac8234c6f2dc4278e731c4de12d24032425a48db9cd5",
-  "copyEngine": false
+  "copyEngine": true
 }
 config.dirname = '/'
 
